@@ -107,7 +107,7 @@ const Component = () => {
             }}
           >
             <Button type="primary" htmlType="submit">
-              注册
+              提交
             </Button>
           </Form.Item>
         </Form>
