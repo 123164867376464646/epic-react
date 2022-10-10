@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import LogoUrl from './logo.svg';
-import { NavLink } from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import styled from 'styled-components';
+import {Button} from "antd";
 
 const Header = styled.header`
   display: flex;
@@ -27,26 +28,30 @@ const StyledLink = styled(NavLink)`
 const Login = styled.div`
   margin-left: auto;
 `;
-
-const Button = styled.button`
+const StyledButton = styled(Button)`
   margin-left: 10px;
-`;
-
+`
 
 function Component() {
+  const [state, setState] = useState(false)
   return (
     <Header>
-      <Logo src={LogoUrl}/> 
+      <Logo src={LogoUrl}/>
       <nav>
         <StyledLink to="/" activeClassName="active" exact>首页</StyledLink>
         <StyledLink to="/history" activeClassName="active">上传历史</StyledLink>
         <StyledLink to="/about" activeClassName="active">关于我</StyledLink>
       </nav>
       <Login>
-        <Button>登录</Button>
-        <Button>注册</Button>
+        {state ? <>饥人谷 <StyledButton type="primary" onClick={() => {
+            setState(false)
+          }}>注销</StyledButton></> :
+          <><StyledButton
+            type="primary" onClick={() => {
+            setState(true)
+          }}>登录</StyledButton>
+            <StyledButton type="primary">注册</StyledButton></>}
       </Login>
-
     </Header>
   );
 }

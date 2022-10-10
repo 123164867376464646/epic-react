@@ -1,10 +1,11 @@
 import { observable, action } from 'mobx';
 
 class AuthStore {
-  @observable isLogin  = false;
+
+  @observable isLogin = false;
   @observable isLoading = false;
   @observable values = {
-    username: '',
+    username: 'jirengu',
     password: ''
   };
 
@@ -37,7 +38,7 @@ class AuthStore {
       console.log('注册成功')
       this.isLogin = true;
       this.isLoading = false;
-    }, 1000);    
+    }, 1000);
   }
 
   @action logout() {
@@ -47,4 +48,4 @@ class AuthStore {
 }
 
 
-export { AuthStore } ;
+export { AuthStore };
