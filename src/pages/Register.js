@@ -21,6 +21,20 @@ const Component = () => {
     text-align: center;
     margin-bottom: 30px;
   `
+
+  const validateUsername = (rule, value) => {
+    if (/\W/.test(value)) return Promise.reject('只能是字母数字下划线')
+    if (value.length < 4 || value.length > 10) return Promise.reject('长度为4~10个字符')
+    return Promise.resolve();
+  }
+  //getFieldValue 获取对应字段名的值
+  const validateConfirm = ({getFieldValue}) => ({
+    validator(rule, value) {
+      if (getFieldValue('password') === value) return Promise.resolve()
+      return Promise.reject('两次密码不一致')
+    }
+  })
+
   return (
     <>
       <Wrapper>
@@ -28,10 +42,10 @@ const Component = () => {
         <Form
           name="basic"
           labelCol={{
-            span: 4,
+            span: 6,
           }}
           wrapperCol={{
-            span: 20,
+            span: 18,
           }}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
@@ -45,6 +59,9 @@ const Component = () => {
                 required: true,
                 message: '输入用户名',
               },
+              {
+                validator: validateUsername
+              }
             ]}
           >
             <Input/>
@@ -58,6 +75,14 @@ const Component = () => {
                 required: true,
                 message: '输入密码',
               },
+              {
+                min: 4,
+                message: '最小4个字符'
+              },
+              {
+                max: 10,
+                message: '最大10个字符'
+              }
             ]}
           >
             <Input.Password/>
@@ -70,14 +95,15 @@ const Component = () => {
                 required: true,
                 message: '再次确认密码',
               },
+              validateConfirm
             ]}
           >
             <Input.Password/>
           </Form.Item>
           <Form.Item
             wrapperCol={{
-              offset: 4,
-              span: 20,
+              offset: 6,
+              span: 18,
             }}
           >
             <Button type="primary" htmlType="submit">
