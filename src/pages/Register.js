@@ -2,18 +2,21 @@ import {Button, Form, Input} from 'antd';
 import React from 'react';
 import styled from "styled-components";
 import {useStores} from "../stores";
+import {useHistory} from "react-router-dom";
 
 
 const Component = () => {
+  const history = useHistory()
   const {AuthStore} = useStores()
   const onFinish = (values) => {
     console.log('Success:', values);
     AuthStore.setUsername(values.username)
     AuthStore.setPassword(values.password)
     AuthStore.register()
-      .then(()=>{
+      .then(() => {
         console.log('注册成功，跳转到首页')
-      }).catch(()=>{
+        history.push('/')
+      }).catch(() => {
       console.log('注册失败，什么都不做')
     })
   };

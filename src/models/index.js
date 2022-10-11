@@ -1,4 +1,4 @@
-import AV, {Query, User} from 'leancloud-storage'
+import AV, {User} from 'leancloud-storage'
 
 AV.init({
   appId: "4xqXgBzkrpNvWsdsEo9Lwasf-gzGzoHsz",
@@ -27,11 +27,11 @@ const Auth = {
   },
   //注销
   logout() {
-     User.logOut()
+    User.logOut()
   },
   //获取用户信息
   getCurrentUser() {
-    User.current();
+    return User.current();
   }
 }
 
