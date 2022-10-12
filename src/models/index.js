@@ -35,7 +35,7 @@ const Auth = {
   }
 }
 const Uploader = {
-  add(file, filename) {
+  addFile(file, filename) {
     const item = new AV.Object('Image');
     const avFile = new AV.File(filename, file)
     item.set('filename', filename)
