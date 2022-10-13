@@ -2,7 +2,7 @@ import React, {useRef} from "react";
 import {useStores} from "../stores";
 import {observer, useLocalStore} from "mobx-react";
 import {InboxOutlined} from '@ant-design/icons';
-import {Upload, message} from 'antd';
+import {Upload, message, Spin} from 'antd';
 import styled from "styled-components";
 
 const {Dragger} = Upload;
@@ -54,11 +54,11 @@ export const Uploader = observer(() => {
         return false
       }
       window.file = file
-      if(!/(svg$)|(webp$)|(png$)|(jpg$)|(jpeg$)|(gif$)/ig.test(file.type)){
+      if (!/(svg$)|(webp$)|(png$)|(jpg$)|(jpeg$)|(gif$)/ig.test(file.type)) {
         message.error('只能上传svg/webp/png/jpg/jpeg/gif格式的图片 ')
         return false
       }
-      if(file.size>1024*1024){
+      if (file.size > 1024 * 1024) {
         message.error('图片最大1M')
         return false
       }
@@ -81,15 +81,17 @@ export const Uploader = observer(() => {
 
   return (
     <div>
-      <Dragger {...props}>
-        <p className="ant-upload-drag-icon">
-          <InboxOutlined/>
-        </p>
-        <p className="ant-upload-text">单击或拖动文件到此区域以进行上传图片</p>
-        <p className="ant-upload-hint">
-          仅支持.svg/.webp/.png/.jpg/.jpeg/.gif格式的图片，图片最大1M
-        </p>
-      </Dragger>
+      <Spin tip='上传中' spinning={ImageStore.isUploading}>
+        <Dragger {...props}>
+          <p className="ant-upload-drag-icon">
+            <InboxOutlined/>
+          </p>
+          <p className="ant-upload-text">单击或拖动文件到此区域以进行上传图片</p>
+          <p className="ant-upload-hint">
+            仅支持.svg/.webp/.png/.jpg/.jpeg/.gif格式的图片，图片最大1M
+          </p>
+        </Dragger>
+      </Spin>
       {
         ImageStore.serverFile ? <Result>
           <H1>上传结果</H1>
