@@ -39,6 +39,7 @@ const Component = observer(() => {
   const {UserStore, AuthStore} = useStores()
   const handleLogout = () => {
     AuthStore.logout()
+
   }
   const handleLogin = () => {
     console.log('跳转到登录页面')

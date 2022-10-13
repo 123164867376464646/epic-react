@@ -53,7 +53,6 @@ export const Uploader = observer(() => {
         message.warning('请先登录再上传！')
         return false
       }
-      window.file = file
       if (!/(svg$)|(webp$)|(png$)|(jpg$)|(jpeg$)|(gif$)/ig.test(file.type)) {
         message.error('只能上传svg/webp/png/jpg/jpeg/gif格式的图片 ')
         return false
@@ -64,7 +63,6 @@ export const Uploader = observer(() => {
       }
       ImageStore.upload()
         .then((serverFile) => {
-          console.log('上传成功')
           console.log(serverFile)
         }).catch((err) => {
         console.error(err)
@@ -120,7 +118,3 @@ export const Uploader = observer(() => {
     </div>
   )
 })
-
-//true
-//http://lc-4xqxgbzk.cn-n1.lcfile.com/yMLyxhfN67I5Jvwze37hzufA97O5ocrG/Cardback.webp?imageView2/0/w/123/h/456
-//http://lc-4xqxgbzk.cn-n1.lcfile.com/yMLyxhfN67I5Jvwze37hzufA97O5ocrG/Cardback.webp?/imageView2/0/w/123/h/456

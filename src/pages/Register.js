@@ -3,6 +3,7 @@ import React from 'react';
 import styled from "styled-components";
 import {useStores} from "../stores";
 import {useHistory} from "react-router-dom";
+import {message} from "antd";
 
 
 const Component = () => {
@@ -14,10 +15,10 @@ const Component = () => {
     AuthStore.setPassword(values.password)
     AuthStore.register()
       .then(() => {
-        console.log('注册成功，跳转到首页')
+        message.success('注册成功')
         history.push('/')
       }).catch(() => {
-      console.log('注册失败，什么都不做')
+        message.error('注册失败')
     })
   };
 

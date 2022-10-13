@@ -1,6 +1,7 @@
 import {observable, action} from 'mobx';
 import {Auth} from '../models';
 import userStore from './user'
+import imageStore from './image'
 
 class AuthStore {
 
@@ -48,6 +49,7 @@ class AuthStore {
   @action logout() {
     Auth.logout()
     userStore.resetUser()
+    imageStore.resetFile()
   }
 
 }

@@ -17,19 +17,21 @@ class ImageStore {
 
   @action upload() {
     this.isUploading = true
-    this.serverFile = null
+    this.resetFile()
     return new Promise((resolve, reject) => {
       Uploader.addFile(this.file, this.filename)
         .then(serverFile => {
           this.serverFile = serverFile
           resolve(serverFile)
         }).catch(error => {
-        console.error('上传失败')
         reject(error)
       }).finally(() => {
         this.isUploading = false
       })
     })
+  }
+  @action resetFile(){
+    this.serverFile = null
   }
 }
 
