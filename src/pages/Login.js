@@ -16,6 +16,7 @@ const Component = () => {
         console.log('登录成功，跳转到首页')
         history.push('/')
       }).catch((e) => {
+        alert('账号或密码有误，请检查重新登录')
       console.log(e)
       console.log('登录失败')
     })

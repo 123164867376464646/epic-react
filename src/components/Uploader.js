@@ -39,7 +39,6 @@ export const Uploader = observer(() => {
     get heightStr() {
       return store.height ? `/h/${store.height}` : ''
     },
-    //?/imageView2/0/w/800/h/400
     get fullStr() {
       return ImageStore.serverFile.attributes.url.attributes.url + '?imageView2/0' + this.widthStr + this.heightStr
     }
@@ -52,6 +51,15 @@ export const Uploader = observer(() => {
       ImageStore.setFile(file)
       if (UserStore.currentUser === null) {
         message.warning('请先登录再上传！')
+        return false
+      }
+      window.file = file
+      if(!/(svg$)|(webp$)|(png$)|(jpg$)|(jpeg$)|(gif$)/ig.test(file.type)){
+        message.error('只能上传svg/webp/png/jpg/jpeg/gif格式的图片 ')
+        return false
+      }
+      if(file.size>1024*1024){
+        message.error('图片最大1M')
         return false
       }
       ImageStore.upload()
@@ -77,10 +85,9 @@ export const Uploader = observer(() => {
         <p className="ant-upload-drag-icon">
           <InboxOutlined/>
         </p>
-        <p className="ant-upload-text">Click or drag file to this area to upload</p>
+        <p className="ant-upload-text">单击或拖动文件到此区域以进行上传图片</p>
         <p className="ant-upload-hint">
-          Support for a single or bulk upload. Strictly prohibit from uploading company data or other
-          band files
+          仅支持.svg/.webp/.png/.jpg/.jpeg/.gif格式的图片，图片最大1M
         </p>
       </Dragger>
       {
