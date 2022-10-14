@@ -31,6 +31,7 @@ class ImageStore {
     })
   }
   @action resetFile(){
+    this.isUploading = false
     this.serverFile = null
   }
 }

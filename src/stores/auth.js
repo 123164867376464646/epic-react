@@ -1,7 +1,8 @@
 import {observable, action} from 'mobx';
 import {Auth} from '../models';
-import userStore from './user'
-import imageStore from './image'
+import UserStore from './user'
+import ImageStore from './image'
+import HistoryStore from "./history";
 
 class AuthStore {
 
@@ -22,11 +23,11 @@ class AuthStore {
     return new Promise((resolve, reject) => {
       Auth.login(this.values.username, this.values.password)
         .then(user => {
-          userStore.pullUser()
+          UserStore.pullUser()
           resolve(user)
         })
         .catch(error => {
-          userStore.resetUser()
+          UserStore.resetUser()
           reject(error)
         })
     })
@@ -36,11 +37,11 @@ class AuthStore {
     return new Promise((resolve, reject) => {
       Auth.register(this.values.username, this.values.password)
         .then(user => {
-          userStore.pullUser()
+          UserStore.pullUser()
           resolve(user)
         })
         .catch(error => {
-          userStore.resetUser()
+          UserStore.resetUser()
           reject(error)
         })
     })
@@ -48,8 +49,9 @@ class AuthStore {
 
   @action logout() {
     Auth.logout()
-    userStore.resetUser()
-    imageStore.resetFile()
+    UserStore.resetUser()
+    ImageStore.resetFile()
+    HistoryStore.reset()
   }
 
 }

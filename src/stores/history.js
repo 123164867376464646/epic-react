@@ -29,5 +29,11 @@ class HistoryStore {
       this.isLoading = false
     })
   }
+  @action reset(){
+  this.list = [];
+  this.isLoading = false
+  this.hasMore = true
+  this.page = 0
+  }
 }
 export default new HistoryStore();
