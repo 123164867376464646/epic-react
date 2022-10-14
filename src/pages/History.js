@@ -1,10 +1,10 @@
 import React from 'react';
-import {List} from '../components/List'
+import {MyList} from '../components/MyList'
 
 function History() {
   return (
     <>
-      <List/>
+      <MyList/>
     </>
   );
 }

@@ -49,7 +49,6 @@ const Uploader = {
       })
     })
   },
-  // Uploader.findFile({page:0,limit:10}).then(data=>console.log(data))
   findFile({page = 0, limit = 10}) {
     const query = new AV.Query('Image')
     query.include('owner')

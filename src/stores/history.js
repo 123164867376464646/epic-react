@@ -19,6 +19,7 @@ class HistoryStore {
     Uploader.findFile({page: this.page, limit: this.limit})
       .then(newList => {
         this.append(newList)
+        this.page++
         if (newList.length < this.limit) {
           this.hasMore = false
         }
@@ -28,8 +29,5 @@ class HistoryStore {
       this.isLoading = false
     })
   }
-
 }
-
-
 export default new HistoryStore();
