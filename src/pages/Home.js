@@ -8,6 +8,7 @@ const Home = observer(() => {
     <>
       <Tips>请先登录！！！</Tips>
       <Uploader/>
+      <div>111</div>
     </>
   );
 })

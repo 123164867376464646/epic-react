@@ -57,10 +57,10 @@ export const Uploader = observer(() => {
         message.error('只能上传svg/webp/png/jpg/jpeg/gif格式的图片 ')
         return false
       }
-      if (file.size > 1024 * 1024) {
-        message.error('图片最大1M')
-        return false
-      }
+      // if (file.size > 1024 * 1024) {
+      //   message.error('图片最大1M')
+      //   return false
+      // }
       ImageStore.upload()
         .then((serverFile) => {
           console.log(serverFile)
