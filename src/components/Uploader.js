@@ -57,10 +57,10 @@ export const Uploader = observer(() => {
         message.error('只能上传svg/webp/png/jpg/jpeg/gif格式的图片 ')
         return false
       }
-      // if (file.size > 1024 * 1024) {
-      //   message.error('图片最大1M')
-      //   return false
-      // }
+      if (file.size > 10 * 1024 * 1024) {
+        message.error('图片最大10M')
+        return false
+      }
       ImageStore.upload()
         .then((serverFile) => {
           console.log(serverFile)
@@ -86,7 +86,7 @@ export const Uploader = observer(() => {
           </p>
           <p className="ant-upload-text">单击或拖动文件到此区域以进行上传图片</p>
           <p className="ant-upload-hint">
-            仅支持.svg/.webp/.png/.jpg/.jpeg/.gif格式的图片，图片最大1M
+            仅支持.svg/.webp/.png/.jpg/.jpeg/.gif格式的图片，图片最大10M
           </p>
         </Dragger>
       </Spin>
