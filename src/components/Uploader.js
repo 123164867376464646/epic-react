@@ -8,22 +8,31 @@ import styled from "styled-components";
 const {Dragger} = Upload;
 
 const Result = styled.div`
+  height: 400px;
+  overflow: scroll;
+  background-color: #7a7a7a47;
+  color: white;
   margin-top: 30px;
-  border: 1px dashed #ccc;
+  border: 1px solid #ccc;
   padding: 20px;
+
+  ::-webkit-scrollbar {
+    display: none; /* Chrome Safari */
+  }
 `
 const H1 = styled.h1`
-  margin: 20px 0;
+  color: white;
   text-align: center;
 `
 const Image = styled.img`
-  max-width: 300px;
+  max-width: 200px;
 `
 
 export const Uploader = observer(() => {
   const {ImageStore, UserStore} = useStores()
   const widthRef = useRef()
   const heightRef = useRef()
+  const divRef = useRef()
   const store = useLocalStore(() => ({
     width: null,
     setWidth(width) {
@@ -76,9 +85,12 @@ export const Uploader = observer(() => {
   const bindHeightChange = () => {
     store.setHeight(heightRef.current.value)
   }
+  const autoScroll = () => {
+    divRef.current.scrollTop= divRef.current.scrollHeight
+  }
 
   return (
-    <div>
+    <>
       <Spin tip='上传中' spinning={ImageStore.isUploading}>
         <Dragger {...props}>
           <p className="ant-upload-drag-icon">
@@ -91,7 +103,7 @@ export const Uploader = observer(() => {
         </Dragger>
       </Spin>
       {
-        ImageStore.serverFile ? <Result>
+        ImageStore.serverFile ? <Result ref={divRef}>
           <H1>上传结果</H1>
           <dl>
             <dt>线上地址</dt>
@@ -104,10 +116,12 @@ export const Uploader = observer(() => {
             <dd>
               <Image src={ImageStore.serverFile.attributes.url.attributes.url} alt={ImageStore.filename}/>
             </dd>
-            <dt>尺寸定制</dt>
+            <dt>尺寸定制(单位:px)</dt>
             <dd>
-              <input onChange={bindWidthChange} placeholder='最大宽度（可选）' ref={widthRef}/>
-              <input onChange={bindHeightChange} placeholder='最大高度（可选）' ref={heightRef}/>
+              <input onClick={autoScroll} onChange={bindWidthChange} placeholder='最大宽度（可选）' ref={widthRef}
+                     style={{color: '#333'}}/>
+              <input onClick={autoScroll} onChange={bindHeightChange} placeholder='最大高度（可选）' ref={heightRef}
+                     style={{color: '#333'}}/>
             </dd>
             <dd>
               <a target='_blank' rel="noopener noreferrer" href={store.fullStr}>{store.fullStr}</a>
@@ -115,6 +129,6 @@ export const Uploader = observer(() => {
           </dl>
         </Result> : null
       }
-    </div>
+    </>
   )
 })

@@ -4,14 +4,13 @@ import background from "./img/background.png";
 import styled from 'styled-components'
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Loading from './components/Loading';
+import {Spin} from 'antd'
 
 import {
   Switch,
   Route
 } from 'react-router-dom';
 
-console.log(Loading)
 // import Home from './pages/Home';
 // import History from './pages/History';
 // import About from './pages/About';
@@ -24,7 +23,9 @@ const Register = lazy(() => import('./pages/Register'));
 
 const Wrapper = styled.div`
   background-image: url(${background});
-  background-size: cover;
+  background-attachment:fixed;
+  background-repeat: no-repeat;
+  background-size:cover;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -38,7 +39,7 @@ function App() {
     <Wrapper>
       <Header/>
       <Main>
-        <Suspense fallback={<Loading/>}>
+        <Suspense fallback={<Spin/>}>
           <Switch>
             <Route path="/" exact component={Home}/>
             <Route path="/history" component={History}/>

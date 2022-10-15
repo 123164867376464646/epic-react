@@ -26,11 +26,13 @@ const Component = () => {
     console.log('Failed:', errorInfo);
   };
   const Wrapper = styled.div`
+    background-color: #bcbcbcba;
     max-width: 600px;
     margin: 30px auto;
-    box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 2px 10px #888888db;
     border-radius: 4px;
     padding: 20px;
+    color: #f0f5ff;
   `
   const Title = styled.h1`
     text-align: center;

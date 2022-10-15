@@ -20,7 +20,6 @@ export const MyList = observer(() => {
     return () => {
       HistoryStore.reset()
     }
-
   }, [])
 
   const Img = styled.img`
@@ -44,7 +43,7 @@ export const MyList = observer(() => {
             active
           />
         }
-        endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
+        endMessage={<Divider plain style={{color:'white'}}>It is all, nothing more 🤐</Divider>}
         scrollableTarget="scrollableDiv"
       >
         <List
