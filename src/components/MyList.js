@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react'
+import React, {useEffect} from 'react'
 import {observer} from "mobx-react";
 import {useStores} from "../stores";
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -7,10 +7,6 @@ import styled from "styled-components";
 import dayjs from "dayjs";
 
 export const MyList = observer(() => {
-  const divImgRef = useRef()
-  const divNameRef = useRef()
-  const divUrlRef = useRef()
-  const divDateRef = useRef()
   const {HistoryStore} = useStores()
   const fetchData = () => {
     HistoryStore.find()
@@ -43,7 +39,7 @@ export const MyList = observer(() => {
             active
           />
         }
-        endMessage={<Divider plain style={{color:'white'}}>It is all, nothing more 🤐</Divider>}
+        endMessage={<Divider plain style={{color: 'white'}}>It is all, nothing more 🤐</Divider>}
         scrollableTarget="scrollableDiv"
       >
         <List
@@ -51,16 +47,16 @@ export const MyList = observer(() => {
           renderItem={
             item => item.attributes.url ? (
               <List.Item key={item.id}>
-                <div ref={divImgRef}>
+                <div>
                   <Img src={item.attributes.url.attributes.url} alt={item.filename} style={{height: '100px'}}/>
                 </div>
-                <div ref={divNameRef}>
-                  <h5>{item.attributes.filename}</h5>
+                <div>
+                  <h5 style={{color:'white'}}>{item.attributes.filename}</h5>
                 </div>
-                <div ref={divUrlRef}>
+                <div>
                   <a href={item.attributes.url.attributes.url}>{item.attributes.url.attributes.url}</a>
                 </div>
-                <div ref={divDateRef}>
+                <div style={{color:'white'}}>
                   {dayjs(item.createdAt.toISOString()).format('YYYY-MM-DD')}
                 </div>
               </List.Item>) : null
