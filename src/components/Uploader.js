@@ -4,6 +4,7 @@ import {observer, useLocalStore} from "mobx-react";
 import {InboxOutlined} from '@ant-design/icons';
 import {Upload, message, Spin} from 'antd';
 import styled from "styled-components";
+import down from '../img/down.svg'
 
 const {Dragger} = Upload;
 
@@ -27,6 +28,19 @@ const H1 = styled.h1`
 `
 const Image = styled.img`
   max-width: 200px;
+`
+const Down = styled.div`
+  padding: 20px;
+  width: 16px;
+  height: 16px;
+  position: fixed;
+  right:120px;
+  bottom: 100px;
+`
+const Img = styled.img`
+  width: 32px;
+  height: 32px;
+  transform: translate(-50%,-50%);
 `
 
 export const Uploader = observer(() => {
@@ -88,6 +102,7 @@ export const Uploader = observer(() => {
   }
   const autoScroll = () => {
     divRef.current.scrollTop = divRef.current.scrollHeight
+
   }
 
   return (
@@ -119,15 +134,16 @@ export const Uploader = observer(() => {
             </dd>
             <dt>尺寸定制(单位:px)</dt>
             <dd>
-              <input onClick={autoScroll} onChange={bindWidthChange} placeholder='最大宽度（可选）' ref={widthRef}
+              <input onChange={bindWidthChange} placeholder='最大宽度（可选）' ref={widthRef}
                      style={{color: '#333'}}/>
-              <input onClick={autoScroll} onChange={bindHeightChange} placeholder='最大高度（可选）' ref={heightRef}
+              <input onChange={bindHeightChange} placeholder='最大高度（可选）' ref={heightRef}
                      style={{color: '#333'}}/>
             </dd>
             <dd>
               <a target='_blank' rel="noopener noreferrer" href={store.fullStr}>{store.fullStr}</a>
             </dd>
           </dl>
+          <Down onClick={autoScroll}><Img src={down} alt=""/></Down>
         </Result> : null
       }
     </>
