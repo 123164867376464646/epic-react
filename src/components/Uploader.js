@@ -23,6 +23,7 @@ const Result = styled.div`
 const H1 = styled.h1`
   color: white;
   text-align: center;
+  margin-bottom: 8px;
 `
 const Image = styled.img`
   max-width: 200px;
@@ -86,7 +87,7 @@ export const Uploader = observer(() => {
     store.setHeight(heightRef.current.value)
   }
   const autoScroll = () => {
-    divRef.current.scrollTop= divRef.current.scrollHeight
+    divRef.current.scrollTop = divRef.current.scrollHeight
   }
 
   return (
