@@ -1,6 +1,6 @@
 import React, {Suspense, lazy} from 'react';
 import './App.css';
-import background from "./img/background.png";
+import background from "./img/background-2.png";
 import styled from 'styled-components'
 import Header from './components/Header';
 import Footer from './components/Footer';
