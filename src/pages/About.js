@@ -5,13 +5,21 @@ const Wrapper = styled.div`
   color: #d9d9d9;
   background-color: #4b46465e;
   padding: 20px 100px;
+  
+  @media (max-width: 768px) {
+    padding: 20px 40px;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 15px 20px;
+  }
 `
 
 function About() {
   return (
     <Wrapper>
       <h1>About Me</h1>
-      <p>路过图床成立于2022年,提供高速稳定的图片上传和管理服务.</p>
+      <p>记忆图床成立于2022年,提供高速稳定的图片上传和管理服务.</p>
       <p>优势:</p>
       <ul>
         <li>免费，无需付费即可登录享受服务.</li>

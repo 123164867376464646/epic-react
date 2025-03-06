@@ -17,7 +17,7 @@ const year = new Date().getFullYear();
 function Component() {
   return (
     <Footer>
-      <div>Copyright &copy; {year} <a href="https://linmumujiayou.gitee.io/epic-react">记忆图床</a> All rights reserved.</div>
+      <div>Copyright &copy; {year} <a href="https://github.com/123164867376464646">记忆图床</a> All rights reserved.</div>
     </Footer>
   );
 }

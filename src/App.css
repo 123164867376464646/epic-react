@@ -78,38 +78,44 @@ body {
   touch-action: manipulation; /* 优化触摸响应 */
 }
 
-/* 全局滚动条样式 */
+/* 修改全局滚动条设置 */
 ::-webkit-scrollbar {
-  width: 10px !important;
-  height: 10px !important;
-  background-color: rgba(0,0,0,0.05) !important; /* 透明背景 */
+  width: 0 !important;
+  height: 0 !important;
+  background-color: transparent !important;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent !important; /* 完全透明滑道 */
-  border-radius: 5px !important;
+  display: none !important;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(160,160,160,0.4) !important; /* 半透明浅灰 */
-  border-radius: 5px !important;
-  border: 2px solid transparent !important; /* 留出透明边距 */
-  background-clip: content-box; /* 防止背景溢出 */
-  transition: background 0.3s ease;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(140,140,140,0.6) !important; /* 加深颜色 */
-}
-
-::-webkit-scrollbar-button {
-  display: none !important; /* 移除两端箭头 */
+  display: none !important;
 }
 
 /* Firefox支持 */
 @supports (scrollbar-color: auto) {
   * {
-    scrollbar-color: rgba(160,160,160,0.4) transparent !important;
-    scrollbar-width: thin !important;
+    scrollbar-width: none !important;
   }
+}
+
+/* 保持滚动功能 */
+html {
+  overflow: -moz-scrollbars-none;  /* 旧版Firefox */
+  scrollbar-width: none;  /* 新版Firefox */
+  -ms-overflow-style: none;  /* IE/Edge */
+}
+
+/* 所有元素保持滚动能力 */
+body,
+#root,
+.main-container {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch; /* 启用顺滑滚动 */
+}
+
+/* 移除默认滚动条占位 */
+* {
+  scrollbar-gutter: auto !important; /* 防止内容偏移 */
 }
