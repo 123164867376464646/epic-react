@@ -1,0 +1,16 @@
+/* 基础响应式设置 */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 14px;
+  @media (min-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+body {
+  -webkit-text-size-adjust: 100%; /* 禁止Safari字体自动缩放 */
+  touch-action: manipulation; /* 优化触摸响应 */
+} 

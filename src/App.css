@@ -24,7 +24,92 @@ a {
 main {
   flex: 1;
   padding: 30px 100px;
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
 }
 
+/* 添加视口元标签（如果尚未存在） */
+html {
+  font-size: 16px;
+  /* 添加移动端触摸优化 */
+  -webkit-tap-highlight-color: transparent;
+}
 
+/* 响应式根字体大小 */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
 
+/* 主容器适配 */
+.main-container {
+  /* ... existing code ... */
+  max-width: 100%;
+  min-height: 100vh;
+  padding: 1rem;
+  overflow-x: hidden; /* 防止横向滚动 */
+  flex-direction: column; /* 移动端改为垂直布局 */
+}
+
+/* 组件级响应式 */
+.component-class {
+  /* ... existing code ... */
+  @media (max-width: 480px) {
+    padding: 0.5rem;
+    font-size: 0.875rem;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 14px;
+  @media (min-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+body {
+  -webkit-text-size-adjust: 100%; /* 禁止Safari字体自动缩放 */
+  touch-action: manipulation; /* 优化触摸响应 */
+}
+
+/* 全局滚动条样式 */
+::-webkit-scrollbar {
+  width: 10px !important;
+  height: 10px !important;
+  background-color: rgba(0,0,0,0.05) !important; /* 透明背景 */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent !important; /* 完全透明滑道 */
+  border-radius: 5px !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(160,160,160,0.4) !important; /* 半透明浅灰 */
+  border-radius: 5px !important;
+  border: 2px solid transparent !important; /* 留出透明边距 */
+  background-clip: content-box; /* 防止背景溢出 */
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(140,140,140,0.6) !important; /* 加深颜色 */
+}
+
+::-webkit-scrollbar-button {
+  display: none !important; /* 移除两端箭头 */
+}
+
+/* Firefox支持 */
+@supports (scrollbar-color: auto) {
+  * {
+    scrollbar-color: rgba(160,160,160,0.4) transparent !important;
+    scrollbar-width: thin !important;
+  }
+}

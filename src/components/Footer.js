@@ -7,6 +7,10 @@ const Footer = styled.footer`
   text-align: center;
   font-size: 12px;
   color: #aaa;
+  @media (max-width: 768px) {
+    padding: 10px 20px;
+    font-size: 10px;
+  }
 `;
 const year = new Date().getFullYear();
 

@@ -9,22 +9,30 @@ import down from '../img/down.svg'
 const {Dragger} = Upload;
 
 const Result = styled.div`
-  height: 400px;
+  height: 60vh;
+  padding: 10px;
   overflow: scroll;
   background-color: #7a7a7a47;
   color: white;
   margin-top: 30px;
   border: 1px solid #ccc;
-  padding: 20px;
 
   ::-webkit-scrollbar {
     display: none; /* Chrome Safari */
+  }
+
+  @media (max-width: 480px) {
+    margin-top: 15px;
   }
 `
 const H1 = styled.h1`
   color: white;
   text-align: center;
   margin-bottom: 8px;
+
+  @media (max-width: 480px) {
+    font-size: 1.5rem;
+  }
 `
 const Image = styled.img`
   max-width: 200px;
@@ -36,6 +44,11 @@ const Down = styled.div`
   position: fixed;
   right:120px;
   bottom: 100px;
+
+  @media (max-width: 480px) {
+    right: 20px;
+    bottom: 80px;
+  }
 `
 const Img = styled.img`
   width: 32px;

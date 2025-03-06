@@ -19,11 +19,21 @@ export const MyList = observer(() => {
   }, [])
 
   const Img = styled.img`
-    width: 200px;
-    height: (1.2*200)px;
-    object-fit: contain;
-    border: 1px solid #eee
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    
+    @media (max-width: 480px) {
+      max-width: 150px;
+    }
   `
+
+  const ListItem = styled(List.Item)`
+    padding: 16px 0 !important;
+    flex-direction: column;
+    align-items: flex-start;
+  `
+
   return (
     <div>
       <InfiniteScroll
@@ -46,7 +56,7 @@ export const MyList = observer(() => {
           dataSource={HistoryStore.list}
           renderItem={
             item => item.attributes.url ? (
-              <List.Item key={item.id}>
+              <ListItem key={item.id}>
                 <div>
                   <Img src={item.attributes.url.attributes.url} alt={item.filename} style={{height: '100px'}}/>
                 </div>
@@ -59,7 +69,7 @@ export const MyList = observer(() => {
                 <div style={{color:'white'}}>
                   {dayjs(item.createdAt.toISOString()).format('YYYY-MM-DD')}
                 </div>
-              </List.Item>) : null
+              </ListItem>) : null
           }
         >
           {HistoryStore.isLoading && HistoryStore.hasMore && (

@@ -12,6 +12,10 @@ const Header = styled.header`
   padding: 10px 100px;
   background-color: rgba(2, 16, 31,0.3);
   color: #fff;
+  @media (max-width: 768px) {
+    padding: 10px 20px;
+    flex-wrap: wrap;
+  }
 `;
 
 const Logo = styled.img`
@@ -21,6 +25,10 @@ const Logo = styled.img`
 const StyledLink = styled(NavLink)`
   color: #fff;
   margin-left: 30px;
+  @media (max-width: 480px) {
+    margin-left: 15px;
+    font-size: 14px;
+  }
 
   &.active {
     border-bottom: 1px solid #fff;
